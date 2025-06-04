@@ -5,7 +5,11 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const notion = new Client({ auth: process.env.NOTION_API_TOKEN });
-const TEST_PAGE_ID = process.env.NOTION_TEST_PAGE_ID!;
+const TEST_PAGE_ID = process.env.NOTION_TEST_PAGE_ID;
+
+if (!TEST_PAGE_ID) {
+  throw new Error("NOTION_TEST_PAGE_ID environment variable is not set");
+}
 
 export async function createSimpleNote(title: string, content: string): Promise<string> {
   const now = new Date().toISOString();
