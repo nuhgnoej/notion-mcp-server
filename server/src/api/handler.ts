@@ -1,9 +1,15 @@
 // src/api/handler.ts
 import express, { Request, Response } from "express";
 import { spawn } from "child_process";
+import cors from "cors"; // 추가
 
 const app = express();
 const port = 3001;
+
+// CORS 허용 설정 추가
+app.use(cors({
+  origin: "*", // 개발 중에는 * 허용 (배포 시엔 도메인 제한)
+}));
 
 app.use(express.json());
 
