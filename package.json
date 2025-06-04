@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsx src/index.ts",
+    "start": "node dist/api/handler.js",
+    "dev": "tsx src/api/handler.ts",
     "mcp": "tsx src/mcp/server.ts",
     "api": "tsx src/api/handler.ts"
   },
