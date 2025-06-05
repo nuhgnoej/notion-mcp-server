@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2020", // 최신 JS 기능 사용 가능
+    "module": "CommonJS", // Node.js용 모듈 시스템
+    "moduleResolution": "node",
+    "rootDir": "./src", // 소스코드 진입점
+    "outDir": "./dist", // 컴파일된 파일 위치
+    "baseUrl": "./src", // 상대 경로 기준 (예: import from "services/mcp.service")
+    "esModuleInterop": true, // CommonJS 호환 import 지원
+    "forceConsistentCasingInFileNames": true, // 대소문자 일관성
+    "strict": true, // 타입 엄격 모드
+    "skipLibCheck": true // 외부 라이브러리 타입 검사 생략
+  },
+  "include": ["src"], // ✅ src 폴더만 포함
+  "exclude": ["node_modules", "dist"]
+}
