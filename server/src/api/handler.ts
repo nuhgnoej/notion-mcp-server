@@ -2,9 +2,12 @@
 import express, { Request, Response } from "express";
 import { spawn } from "child_process";
 import cors from "cors"; // 추가
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const app = express();
-const port = 3001;
+const port = parseInt(process.env.PORT || "3001", 10);
 
 // CORS 허용 설정 추가
 app.use(cors({
