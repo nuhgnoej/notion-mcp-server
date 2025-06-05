@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, TextInput, Button, Alert } from 'react-native';
 import { View, Text } from '@/components/Themed';
+import { API_BASE_URL } from '@/constants/api';
 
 export default function IndexScreen() {
   const [message, setMessage] = useState('');
@@ -15,7 +16,7 @@ export default function IndexScreen() {
     setLoading(true);
 
     try {
-      const res = await fetch('http://localhost:3001/create-note', {
+      const res = await fetch(`${API_BASE_URL}/create-note`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
