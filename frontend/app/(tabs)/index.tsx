@@ -109,6 +109,7 @@ export default function SmartNoteScreen() {
         value={generated}
         onChangeText={setGenerated}
         multiline
+        scrollEnabled
       />
 
       <Text style={styles.label}>전송할 앱</Text>
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginTop: 8,
-    minHeight: 120,
+    minHeight: 180,
     backgroundColor: "#f9f9f9",
     textAlignVertical: "top",
   },
