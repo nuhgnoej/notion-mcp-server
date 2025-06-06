@@ -43,6 +43,7 @@ export default function SmartNoteScreen() {
       console.log(JSON.stringify(data));
     } catch (err: any) {
       Alert.alert("에러", err.message || "OpenAI 요청 실패");
+      console.log(API_BASE_URL)
       console.log("에러", err.message || "OpenAI 요청 실패");
     } finally {
       setLoading(false);

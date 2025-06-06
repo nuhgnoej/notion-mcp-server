@@ -19,7 +19,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.2",
-    "@types/node": "^20.17.57",
+    "@types/node": "^20.17.58",
     "tsx": "^4.19.4",
     "typescript": "^5.8.3"
   }

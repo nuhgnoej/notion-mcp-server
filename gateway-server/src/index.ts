@@ -15,9 +15,10 @@ app.use(express.json());
 app.use("/generate-message", generateMessageRoute);
 app.use("/create-note", createNoteRoute);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.GATEWAY_SERVER_PORT || 3001;
+const GATEWAY_SERVER_URL = process.env.GATEWAY_SERVER_URL;
 app.listen(PORT, () => {
   console.log(
-    `🚀 Gateway Server running on https://ominous-capybara-5g5x49wj5rgvhpx7w-3001.app.github.dev`
+    `🚀 Gateway Server running on ${GATEWAY_SERVER_URL}`
   );
 });
