@@ -1,7 +1,7 @@
 // gateway-server/src/services/mcp.service.ts
-import fetch from "node-fetch";
-
-const MCP_SERVER_URL = process.env.MCP_SERVER_URL || "http://localhost:8080";
+import { MCP_SERVER_URL } from "constants/api";
+import { Client } from "@modelcontextprotocol/sdk/client/index.js";
+import { StreamableHTTPClientTransport } from "@modelcontextprotocol/sdk/client/streamableHttp.js";
 
 type SendNotePayload = {
   title: string;
@@ -9,22 +9,29 @@ type SendNotePayload = {
   destination: string;
 };
 
-export async function sendNoteToMcp({ title, content, destination }: SendNotePayload) {
-  if (destination === "notion") {
-    const res = await fetch(`${MCP_SERVER_URL}/tool/create_simple_note`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title, content }),
-    });
+const BASE_URL = "https://ominous-capybara-5g5x49wj5rgvhpx7w-8080.app.github.dev/mcp";
 
-    if (!res.ok) {
-      const error = await res.text();
-      throw new Error("MCP 응답 실패: " + error);
-    }
+export async function sendNoteToMcp({
+  title,
+  content,
+  destination,
+}: SendNotePayload) {
+  const transport = new StreamableHTTPClientTransport(new URL(`${BASE_URL}`));
 
-    const json = await res.json();
-    return json;
-  }
+  const client = new Client({
+    name: "notion-client",
+    version: "1.0.0",
+  });
 
-  throw new Error(`지원하지 않는 destination: ${destination}`);
+  await client.connect(transport);
+
+  const result = await client.callTool({
+    name: "create_simple_note",
+    arguments: {
+      title,
+      content,
+    },
+  });
+
+  console.log("📥 Tool Result:", result);
 }
